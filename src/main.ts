@@ -23,7 +23,7 @@ async function bootstrap() {
   setupSocket(server, tasksService);
 
   await app.listen(5001);
-  console.log('Backend running on https://taskbackend-xmwy.onrender.com');
+  console.log('Backend running on 5001');
 }
 
 bootstrap();
