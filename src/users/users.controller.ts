@@ -1,4 +1,3 @@
-// users.controller.ts
 import {
   Controller,
   Get,
@@ -44,10 +43,9 @@ export class UsersController {
     return this.usersService.getUsersCreatedByAdmin(admin.id);
   }
 
-  // FIXED: Only admin can get ALL users
   @Get()
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Roles('admin')  // ← REMOVE 'user'
+  @Roles('admin') 
   async findAll() {
     return this.usersService.findAll();
   }
@@ -67,7 +65,6 @@ export class UsersController {
     const user = await this.usersService.findById(id);
     if (!user) throw new BadRequestException('User not found');
 
-    // Optional: Allow user to view own profile
     if (currentUser.role !== 'admin' && currentUser.id !== id) {
       throw new BadRequestException('Unauthorized');
     }
@@ -77,6 +74,6 @@ export class UsersController {
   @Get('profile')
   @UseGuards(JwtAuthGuard)
   async getProfile(@Req() req: any) {
-    return req.user; // ← Return actual user data
+    return req.user; 
   }
 }

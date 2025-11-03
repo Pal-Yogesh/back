@@ -17,7 +17,7 @@ export class TasksService {
   constructor(
     @InjectModel(Task.name) private taskModel: Model<Task>,
     private usersService: UsersService,
-    private notificationGateway: NotificationGateway, // ← INJECTED
+    private notificationGateway: NotificationGateway, 
   ) {}
 
   async create(dto: CreateTaskDto, userId: string) {
